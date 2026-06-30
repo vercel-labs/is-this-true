@@ -1,15 +1,16 @@
+import { none } from "eve/channels/auth";
 import { eveChannel } from "eve/channels/eve";
-import { localDev, placeholderAuth, vercelOidc } from "eve/channels/auth";
 
+// PUBLIC DEMO: this agent endpoint is open to anyone. Every request spends your
+// X API rate limits and your AI model tokens. For anything beyond a demo,
+// replace `none()` with your app's real auth (e.g. Auth.js or Clerk) plus
+// `vercelOidc()` / `localDev()` from "eve/channels/auth" — see
+// node_modules/eve/docs/guides/auth-and-route-protection.md.
+//
+// Both auth modes in agent/connections/x.ts (static bearer, and Vercel Connect
+// app-scoped via an API key connector) are app-scoped, so no user principal is
+// required and `none()` is enough. Only per-user Vercel Connect OAuth would need
+// a real user principal here.
 export default eveChannel({
-  auth: [
-    // Open on localhost for `eve dev` and the REPL; ignored in production.
-    localDev(),
-    // Lets the Eve TUI and your Vercel deployments reach the deployed agent.
-    vercelOidc(),
-    // This placeholder will not allow browser requests in production.
-    // Replace it with your app's auth provider, like Auth.js or Clerk,
-    // or use none() for a public demo.
-    placeholderAuth(),
-  ],
+  auth: [none()],
 });

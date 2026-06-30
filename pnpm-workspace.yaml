@@ -1,5 +1,14 @@
 minimumReleaseAgeExclude:
   - eve
+  - "@ai-sdk/*"
+  - "@rolldown/*"
+  - "@vercel/*"
+  - "@workflow/*"
+  - ai
+  - experimental-ai-sdk-code-mode
+  - nitro
+  - rolldown
+  - workflow
 allowBuilds:
   sharp: false
 # Compatibility for Eve releases with an incomplete runtime manifest.
